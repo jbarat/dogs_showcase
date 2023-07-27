@@ -14,4 +14,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Dogs ShowCase"
+
+include(":domain")
+include(":data")
 include(":app")
