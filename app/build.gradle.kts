@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
@@ -54,13 +56,21 @@ dependencies {
     implementation(project(":data"))
 
     implementation("androidx.core:core-ktx:${Versions.AndroidX.core}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.lifecycle_runtime}")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.AndroidX.lifecycle}")
     implementation("androidx.activity:activity-compose:${Versions.AndroidX.activity_compose}")
+    implementation("androidx.navigation:navigation-compose:${Versions.AndroidX.nav_compose}")
+    implementation("androidx.hilt:hilt-navigation-compose:${Versions.AndroidX.hilt_nav_compose}")
     implementation(platform("androidx.compose:compose-bom:${Versions.AndroidX.compose_bom}"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+
+    implementation("io.coil-kt:coil-compose:${Versions.Coil.coil_compose}")
+
+    implementation("com.google.dagger:hilt-android:${Versions.Dagger.hilt}")
+    kapt("com.google.dagger:hilt-android-compiler:${Versions.Dagger.hilt}")
 
     testImplementation("junit:junit:${Versions.Test.junit}")
 

@@ -1,4 +1,4 @@
-package hu.jozsefbarat.dogsshowcase.ui.theme
+package hu.jozsefbarat.dogsshowcase.theme
 
 import androidx.compose.ui.graphics.Color
 

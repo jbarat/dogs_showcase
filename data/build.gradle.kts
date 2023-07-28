@@ -33,6 +33,14 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+
+    implementation("javax.inject:javax.inject:${Versions.Java.inject}")
+
+    api("com.squareup.retrofit2:retrofit:${Versions.Network.retrofit}")
+    api("com.squareup.retrofit2:converter-gson:${Versions.Network.retrofit}")
+    api("com.squareup.okhttp3:logging-interceptor:${Versions.Network.okhttp}")
+
     testImplementation("junit:junit:${Versions.Test.junit}")
     androidTestImplementation("androidx.test.ext:junit:${Versions.Test.junit_ext}")
 }
