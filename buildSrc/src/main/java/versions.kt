@@ -1,6 +1,7 @@
 import org.gradle.api.JavaVersion
 
 object Versions {
+
     object BuildTools {
         const val buildGradle = "4.2.2"
         const val kotlinCompilerExtensionVersion = "1.4.3"
@@ -23,6 +24,10 @@ object Versions {
         const val compose_bom = "2023.03.00"
     }
 
+    object KotlinX {
+        const val coroutines = "1.7.1"
+    }
+
     object Network {
         const val okhttp = "4.9.1"
         const val retrofit = "2.9.0"
@@ -37,6 +42,7 @@ object Versions {
     }
 
     object Test {
+        const val mockk = "1.12.0"
         const val junit = "4.13.2"
         const val junit_ext = "1.1.5"
         const val espresso_core = "3.5.1"

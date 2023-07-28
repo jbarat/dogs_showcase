@@ -10,4 +10,8 @@ java {
 
 dependencies {
     implementation("javax.inject:javax.inject:${Versions.Java.inject}")
+
+    testImplementation("junit:junit:${Versions.Test.junit}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.KotlinX.coroutines}")
+    testImplementation("io.mockk:mockk:${Versions.Test.mockk}")
 }

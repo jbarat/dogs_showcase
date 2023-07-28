@@ -42,5 +42,6 @@ dependencies {
     api("com.squareup.okhttp3:logging-interceptor:${Versions.Network.okhttp}")
 
     testImplementation("junit:junit:${Versions.Test.junit}")
-    androidTestImplementation("androidx.test.ext:junit:${Versions.Test.junit_ext}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.KotlinX.coroutines}")
+    testImplementation("io.mockk:mockk:${Versions.Test.mockk}")
 }
