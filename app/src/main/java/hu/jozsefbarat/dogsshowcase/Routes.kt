@@ -7,7 +7,7 @@ sealed class Routes(
     fun getRoute(): String = canonicalRoute
 
     object BreedsListScreen : Routes("breeds")
-    object BreedDetailsScreen : Routes("breed/{breedName}") {
+    object BreedDetailsScreen : Routes("breeds/{breedName}") {
         object Params {
             const val breedName = "breedName"
         }

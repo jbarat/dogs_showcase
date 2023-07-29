@@ -22,7 +22,6 @@ class BreedListViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            _uiState.value = _uiState.value.copy(state = LoadingState.Loading)
             val breeds = getAllBreedsUseCase.execute()
             _uiState.value = _uiState.value.copy(state = LoadingState.Loaded(breeds))
         }

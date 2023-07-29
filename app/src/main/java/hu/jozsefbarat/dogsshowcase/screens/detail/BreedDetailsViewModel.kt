@@ -8,7 +8,6 @@ import hu.jozsefbarat.dogsshowcase.Routes
 import hu.jozsefbarat.dogsshowcase.common.LoadingState
 import hu.jozsefbarat.domain.breed.GetBreedImagesParams
 import hu.jozsefbarat.domain.breed.GetBreedImagesUseCase
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,8 +31,6 @@ class BreedDetailsViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(breedName = breedName)
 
         viewModelScope.launch {
-            delay(1000L) //This is only here to show the loading state
-
             _uiState.value = _uiState.value.copy(state = LoadingState.Loading)
             val images = getBreedImagesUseCase.execute(GetBreedImagesParams(breedName, randomImageLimit))
 
