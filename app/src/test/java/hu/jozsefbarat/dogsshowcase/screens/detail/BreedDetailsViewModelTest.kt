@@ -22,7 +22,6 @@ class BreedDetailsViewModelTest {
     private val getBreedImagesUseCase = mockk<GetBreedImagesUseCase>()
     private val savedStateHandle = mockk<SavedStateHandle>(relaxed = true)
 
-
     @ExperimentalCoroutinesApi
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule(UnconfinedTestDispatcher())
@@ -49,7 +48,6 @@ class BreedDetailsViewModelTest {
 
         assert(state.value.state is LoadingState.Loading)
     }
-
 
     @Test
     fun `when receive images then change state to loaded`() {

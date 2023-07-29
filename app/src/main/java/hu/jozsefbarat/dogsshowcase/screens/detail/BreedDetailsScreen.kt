@@ -40,6 +40,16 @@ import hu.jozsefbarat.dogsshowcase.ext.capitalize
 fun BreedDetailsScreen(viewModel: BreedDetailsViewModel, navController: NavController) {
     val uiState by viewModel.uiState.collectAsState()
 
+    BreedDetailsContent(uiState, onBackTapped = {
+        navController.popBackStack()
+    })
+}
+
+@Composable
+fun BreedDetailsContent(
+    uiState: BreedDetailsUiState,
+    onBackTapped: () -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -54,7 +64,7 @@ fun BreedDetailsScreen(viewModel: BreedDetailsViewModel, navController: NavContr
                     containerColor = MaterialTheme.colorScheme.primary
                 ),
                 navigationIcon = {
-                    IconButton(onClick = navController::popBackStack) {
+                    IconButton(onClick = onBackTapped) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back",
@@ -65,31 +75,25 @@ fun BreedDetailsScreen(viewModel: BreedDetailsViewModel, navController: NavContr
             )
         },
         content = { paddingValues ->
-
             Box(modifier = Modifier.padding(paddingValues)) {
-
                 when (uiState.state) {
                     LoadingState.Loading -> LoadingAnimation()
 
                     is LoadingState.Error -> {
-                        val state = uiState.state as LoadingState.Error
-
                         Box(
                             modifier = Modifier
                                 .align(Alignment.Center)
                                 .background(Color.White)
                         )
                         {
-                            Text(text = state.message ?: "Unknown error")
+                            Text(text = uiState.state.message ?: "Unknown error")
                         }
                     }
 
                     is LoadingState.Loaded -> {
-                        val state = uiState.state as LoadingState.Loaded<List<String>>
-                        ImagesContent(state.data)
+                        ImagesContent(uiState.state.data)
                     }
                 }
-
             }
         }
     )

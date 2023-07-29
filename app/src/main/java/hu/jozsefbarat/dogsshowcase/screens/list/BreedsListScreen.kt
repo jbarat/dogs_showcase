@@ -27,6 +27,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -42,6 +43,16 @@ fun BreedsListScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
+    BreedsListContent(uiState, onBreedSelected = { breed ->
+        viewModel.onAction(BreedsListAction.BreedSelected(breed, navController))
+    })
+}
+
+@Composable
+fun BreedsListContent(
+    uiState: BreedsListUiState,
+    onBreedSelected: (Breed) -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -65,7 +76,6 @@ fun BreedsListScreen(
                     }
 
                     is LoadingState.Error -> {
-                        val state = uiState.state as LoadingState.Error
 
                         Box(
                             modifier = Modifier
@@ -73,27 +83,19 @@ fun BreedsListScreen(
                                 .background(Color.White)
                         )
                         {
-                            Text(text = state.message ?: "Unknown error")
+                            Text(text = uiState.state.message ?: "Unknown error")
                         }
 
                     }
 
                     is LoadingState.Loaded -> {
-                        val state = uiState.state as LoadingState.Loaded
-
-                        BreedsListContent(breeds = state.data) { breed ->
-                            viewModel.onAction(
-                                BreedsListAction.BreedSelected(breed, navController)
-                            )
-                        }
-
+                        BreedsList(breeds = uiState.state.data, onClick = onBreedSelected)
                     }
                 }
 
             }
         }
     )
-
 }
 
 @Composable
@@ -104,6 +106,7 @@ fun LoadingAnimation() {
         items(30) {
             Box(
                 modifier = Modifier
+                    .testTag("shimmer $it")
                     .background(shimmerBrush(targetValue = 1000f))
                     .fillMaxWidth()
                     .height(64.dp)
@@ -114,7 +117,7 @@ fun LoadingAnimation() {
 
 
 @Composable
-fun BreedsListContent(breeds: List<Breed>, onClick: (Breed) -> Unit) {
+fun BreedsList(breeds: List<Breed>, onClick: (Breed) -> Unit) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
