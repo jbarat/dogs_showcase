@@ -73,6 +73,8 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Dagger.hilt}")
 
     testImplementation("junit:junit:${Versions.Test.junit}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.KotlinX.coroutines}")
+    testImplementation("io.mockk:mockk:${Versions.Test.mockk}")
 
     androidTestImplementation("androidx.test.ext:junit:${Versions.Test.junit_ext}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Test.espresso_core}")

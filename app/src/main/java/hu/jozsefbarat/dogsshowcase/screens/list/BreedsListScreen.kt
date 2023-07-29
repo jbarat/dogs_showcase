@@ -6,6 +6,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -29,6 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import hu.jozsefbarat.dogsshowcase.common.LoadingState
+import hu.jozsefbarat.dogsshowcase.common.shimmerBrush
 import hu.jozsefbarat.dogsshowcase.ext.capitalize
 import hu.jozsefbarat.domain.breed.Breed
 
@@ -58,14 +61,7 @@ fun BreedsListScreen(
             Box(modifier = Modifier.padding(paddingValues)) {
                 when (uiState.state) {
                     LoadingState.Loading -> {
-                        Box(
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .background(Color.White)
-                        )
-                        {
-                            Text(text = "Loading...")
-                        }
+                        LoadingAnimation()
                     }
 
                     is LoadingState.Error -> {
@@ -98,6 +94,22 @@ fun BreedsListScreen(
         }
     )
 
+}
+
+@Composable
+fun LoadingAnimation() {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        items(30) {
+            Box(
+                modifier = Modifier
+                    .background(shimmerBrush(targetValue = 1000f))
+                    .fillMaxWidth()
+                    .height(64.dp)
+            )
+        }
+    }
 }
 
 
