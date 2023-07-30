@@ -4,6 +4,10 @@ The Breeds Showcase App is a simple application that displays a list of dog bree
 random pictures for
 each breed. The data is fetched from the [Dog API](https://dog.ceo/dog-api/).
 
+
+https://github.com/jbarat/dogs_showcase/assets/6706968/e6a76e7c-3c09-4d8d-8197-56b3f47e8cea
+
+
 ## App Architecture
 
 The app uses clean architecture. The layers are separated into different Gradle modules to enforce
