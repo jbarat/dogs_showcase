@@ -29,9 +29,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import hu.jozsefbarat.dogsshowcase.R
 import hu.jozsefbarat.dogsshowcase.common.LoadingState
 import hu.jozsefbarat.dogsshowcase.common.shimmerBrush
 import hu.jozsefbarat.dogsshowcase.ext.capitalize
@@ -55,7 +57,10 @@ fun BreedDetailsContent(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Breed of ${uiState.breedName?.capitalize()} 🐩",
+                        text = stringResource(
+                            R.string.title_breed_details,
+                            uiState.breedName?.capitalize() as String
+                        ),
                         fontSize = MaterialTheme.typography.headlineMedium.fontSize,
                         color = MaterialTheme.colorScheme.onPrimary
                     )
@@ -67,7 +72,7 @@ fun BreedDetailsContent(
                     IconButton(onClick = onBackTapped) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.button_back),
                             tint = MaterialTheme.colorScheme.onPrimary,
                         )
                     }
@@ -86,7 +91,10 @@ fun BreedDetailsContent(
                                 .background(Color.White)
                         )
                         {
-                            Text(text = uiState.breedImages.message ?: "Unknown error")
+                            Text(
+                                text = uiState.breedImages.message
+                                    ?: stringResource(R.string.unknown_error)
+                            )
                         }
                     }
 

@@ -28,9 +28,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import hu.jozsefbarat.dogsshowcase.R
 import hu.jozsefbarat.dogsshowcase.common.LoadingState
 import hu.jozsefbarat.dogsshowcase.common.shimmerBrush
 import hu.jozsefbarat.dogsshowcase.ext.capitalize
@@ -58,7 +60,7 @@ fun BreedsListContent(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Breeds 🐶",
+                        text = stringResource(R.string.title_breeds_list),
                         fontSize = MaterialTheme.typography.headlineMedium.fontSize,
                         color = MaterialTheme.colorScheme.onPrimary
                     )
@@ -83,7 +85,7 @@ fun BreedsListContent(
                                 .background(Color.White)
                         )
                         {
-                            Text(text = uiState.breeds.message ?: "Unknown error")
+                            Text(text = uiState.breeds.message ?: stringResource(R.string.unknown_error))
                         }
 
                     }
@@ -141,7 +143,7 @@ fun BreedListItem(breed: Breed, onClick: (Breed) -> Unit) {
                 fontWeight = FontWeight.Bold
             )
         },
-        supportingText = { Text(text = "Sub breeds ${breed.subBreeds.size}") },
+        supportingText = { Text(text = stringResource(R.string.list_item_sub_text_breeds, breed.subBreeds.size)) },
         trailingContent = {
             Icon(
                 imageVector = Icons.Default.PlayArrow,
