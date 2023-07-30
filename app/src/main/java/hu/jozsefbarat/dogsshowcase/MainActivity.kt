@@ -16,11 +16,6 @@ import hu.jozsefbarat.dogsshowcase.screens.detail.BreedDetailsScreen
 import hu.jozsefbarat.dogsshowcase.screens.list.BreedsListScreen
 import hu.jozsefbarat.dogsshowcase.theme.DogsShowCaseTheme
 
-val routes = listOf(
-    Routes.BreedsListScreen,
-    Routes.BreedDetailsScreen
-)
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

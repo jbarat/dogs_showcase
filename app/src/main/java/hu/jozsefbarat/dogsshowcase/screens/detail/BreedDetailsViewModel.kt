@@ -31,11 +31,12 @@ class BreedDetailsViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(breedName = breedName)
 
         viewModelScope.launch {
-            _uiState.value = _uiState.value.copy(state = LoadingState.Loading)
-            val images = getBreedImagesUseCase.execute(GetBreedImagesParams(breedName, randomImageLimit))
+            _uiState.value = _uiState.value.copy(breedImages = LoadingState.Loading)
+            val images =
+                getBreedImagesUseCase.execute(GetBreedImagesParams(breedName, randomImageLimit))
 
             _uiState.value = _uiState.value.copy(
-                state = LoadingState.Loaded(images.map { it.url })
+                breedImages = LoadingState.Loaded(images.map { it.url })
             )
         }
     }

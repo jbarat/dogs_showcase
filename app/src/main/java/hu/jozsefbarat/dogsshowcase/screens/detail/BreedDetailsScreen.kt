@@ -76,7 +76,7 @@ fun BreedDetailsContent(
         },
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
-                when (uiState.state) {
+                when (uiState.breedImages) {
                     LoadingState.Loading -> LoadingAnimation()
 
                     is LoadingState.Error -> {
@@ -86,12 +86,12 @@ fun BreedDetailsContent(
                                 .background(Color.White)
                         )
                         {
-                            Text(text = uiState.state.message ?: "Unknown error")
+                            Text(text = uiState.breedImages.message ?: "Unknown error")
                         }
                     }
 
                     is LoadingState.Loaded -> {
-                        ImagesContent(uiState.state.data)
+                        ImagesContent(uiState.breedImages.data)
                     }
                 }
             }

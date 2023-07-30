@@ -46,7 +46,7 @@ class BreedDetailsViewModelTest {
 
         val state = getViewModel().uiState
 
-        assert(state.value.state is LoadingState.Loading)
+        assert(state.value.breedImages is LoadingState.Loading)
     }
 
     @Test
@@ -60,7 +60,7 @@ class BreedDetailsViewModelTest {
 
         val state = getViewModel().uiState
 
-        assert(state.value.state is LoadingState.Loaded)
+        assert(state.value.breedImages is LoadingState.Loaded)
     }
 
     @Test
@@ -73,7 +73,7 @@ class BreedDetailsViewModelTest {
         } returns imagesResponse
 
         val state = getViewModel().uiState
-        assert((state.value.state as LoadingState.Loaded).data == mappedResponse)
+        assert((state.value.breedImages as LoadingState.Loaded).data == mappedResponse)
     }
 
     private fun getViewModel() = BreedDetailsViewModel(

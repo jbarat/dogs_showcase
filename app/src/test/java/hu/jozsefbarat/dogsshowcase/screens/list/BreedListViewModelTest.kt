@@ -34,7 +34,7 @@ class BreedListViewModelTest {
     fun `when init then uiState is loading`() {
         val state = getViewModel().uiState
 
-        assert(state.value.state is LoadingState.Loading)
+        assert(state.value.breeds is LoadingState.Loading)
     }
 
     @Test
@@ -43,7 +43,7 @@ class BreedListViewModelTest {
 
         val state = getViewModel().uiState
 
-        assert(state.value.state is LoadingState.Loaded)
+        assert(state.value.breeds is LoadingState.Loaded)
     }
 
     @Test
@@ -52,7 +52,7 @@ class BreedListViewModelTest {
 
         val state = getViewModel().uiState
 
-        assert((state.value.state as LoadingState.Loaded).data == breedsResponse)
+        assert((state.value.breeds as LoadingState.Loaded).data == breedsResponse)
     }
 
     @Test

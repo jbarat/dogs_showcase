@@ -1,5 +1,9 @@
 package hu.jozsefbarat.dogsshowcase
 
+val routes = listOf(
+    Routes.BreedsListScreen,
+    Routes.BreedDetailsScreen
+)
 sealed class Routes(
     val canonicalRoute: String,
 ) {

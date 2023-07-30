@@ -4,5 +4,5 @@ import hu.jozsefbarat.dogsshowcase.common.LoadingState
 import hu.jozsefbarat.domain.breed.Breed
 
 data class BreedsListUiState(
-    val state: LoadingState<List<Breed>> = LoadingState.Loading,
+    val breeds: LoadingState<List<Breed>> = LoadingState.Loading,
 )

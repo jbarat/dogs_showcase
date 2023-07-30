@@ -70,7 +70,7 @@ fun BreedsListContent(
         },
         content = { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
-                when (uiState.state) {
+                when (uiState.breeds) {
                     LoadingState.Loading -> {
                         LoadingAnimation()
                     }
@@ -83,13 +83,13 @@ fun BreedsListContent(
                                 .background(Color.White)
                         )
                         {
-                            Text(text = uiState.state.message ?: "Unknown error")
+                            Text(text = uiState.breeds.message ?: "Unknown error")
                         }
 
                     }
 
                     is LoadingState.Loaded -> {
-                        BreedsList(breeds = uiState.state.data, onClick = onBreedSelected)
+                        BreedsList(breeds = uiState.breeds.data, onClick = onBreedSelected)
                     }
                 }
 
