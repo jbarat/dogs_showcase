@@ -22,8 +22,12 @@ class BreedListViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val breeds = getAllBreedsUseCase.execute()
-            _uiState.value = _uiState.value.copy(breeds = LoadingState.Loaded(breeds))
+            try {
+                val breeds = getAllBreedsUseCase.execute()
+                _uiState.value = _uiState.value.copy(breeds = LoadingState.Loaded(breeds))
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(breeds = LoadingState.Error("Error while loading breeds"))
+            }
         }
     }
 

@@ -1,8 +1,10 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@file:OptIn(
+    ExperimentalMaterial3Api::class,
+    ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class
+)
 
 package hu.jozsefbarat.dogsshowcase.screens.detail
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -92,6 +94,7 @@ fun BreedDetailsContent(
                         )
                         {
                             Text(
+                                modifier = Modifier.padding(16.dp),
                                 text = uiState.breedImages.message
                                     ?: stringResource(R.string.unknown_error)
                             )

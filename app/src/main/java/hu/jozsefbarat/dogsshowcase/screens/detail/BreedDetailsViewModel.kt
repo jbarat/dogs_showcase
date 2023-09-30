@@ -32,12 +32,19 @@ class BreedDetailsViewModel @Inject constructor(
 
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(breedImages = LoadingState.Loading)
-            val images =
-                getBreedImagesUseCase.execute(GetBreedImagesParams(breedName, randomImageLimit))
 
-            _uiState.value = _uiState.value.copy(
-                breedImages = LoadingState.Loaded(images.map { it.url })
-            )
+            try {
+                val images =
+                    getBreedImagesUseCase.execute(GetBreedImagesParams(breedName, randomImageLimit))
+
+                _uiState.value = _uiState.value.copy(
+                    breedImages = LoadingState.Loaded(images.map { it.url })
+                )
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    breedImages = LoadingState.Error("Error while loading images")
+                )
+            }
         }
     }
 }

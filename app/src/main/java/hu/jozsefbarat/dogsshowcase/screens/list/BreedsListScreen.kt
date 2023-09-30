@@ -1,4 +1,7 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
+    ExperimentalMaterial3Api::class
+)
 
 package hu.jozsefbarat.dogsshowcase.screens.list
 
@@ -82,10 +85,14 @@ fun BreedsListContent(
                         Box(
                             modifier = Modifier
                                 .align(Alignment.Center)
-                                .background(Color.White)
+                                .background(Color.White),
                         )
                         {
-                            Text(text = uiState.breeds.message ?: stringResource(R.string.unknown_error))
+                            Text(
+                                modifier = Modifier.padding(16.dp),
+                                text = uiState.breeds.message
+                                    ?: stringResource(R.string.unknown_error)
+                            )
                         }
 
                     }
@@ -143,7 +150,14 @@ fun BreedListItem(breed: Breed, onClick: (Breed) -> Unit) {
                 fontWeight = FontWeight.Bold
             )
         },
-        supportingText = { Text(text = stringResource(R.string.list_item_sub_text_breeds, breed.subBreeds.size)) },
+        supportingText = {
+            Text(
+                text = stringResource(
+                    R.string.list_item_sub_text_breeds,
+                    breed.subBreeds.size
+                )
+            )
+        },
         trailingContent = {
             Icon(
                 imageVector = Icons.Default.PlayArrow,
